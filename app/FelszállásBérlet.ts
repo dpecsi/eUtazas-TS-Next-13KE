@@ -9,12 +9,12 @@ export default class FelszállásBérlet extends Felszállás {
     return this._idő >= this.#érvényes;
   }
 
-  get kedvezményes(): boolean {
-    return ["TAB", "NYB"].includes(this.#típus);
+  get ezKedvezményesUtazás(): boolean {
+    return ["TAB", "NYB"].includes(this.#típus) && !this.ezÉrvénytelenFelszállás;
   }
 
-  get ingyenes(): boolean {
-    return ["NYP", "RVS", "GYK"].includes(this.#típus);
+  get ezIngyenesUtazás(): boolean {
+    return ["NYP", "RVS", "GYK"].includes(this.#típus) && !this.ezÉrvénytelenFelszállás;
   }
 
   constructor(adatsor: string) {

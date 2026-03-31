@@ -35,18 +35,14 @@ export default class Megoldás {
     return max;
   }
 
-  get kedvezményesFelszállások() {
-    let db: number = 0;
-    for (const e of this.#utasadatok) {
-      if (e.kedvezményes && !e.ezÉrvénytelenFelszállás) db++;
-    }
-    return db;
+  get kedvezményesFelszállások(): number {
+    return this.#utasadatok.filter((x) => x.ezKedvezményesUtazás).length;
   }
 
   get ingyenesFelszállások() {
     let db: number = 0;
     for (const e of this.#utasadatok) {
-      if (e.ingyenes && !e.ezÉrvénytelenFelszállás) db++;
+      if (e.ezIngyenesUtazás) db++;
     }
     return db;
   }

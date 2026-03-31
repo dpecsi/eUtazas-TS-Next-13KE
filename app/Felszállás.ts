@@ -14,11 +14,11 @@ export default abstract class Felszállás {
     return this._megállóSorszáma;
   }
 
-  get kedvezményes(): boolean {
+  get ezKedvezményesUtazás(): boolean {
     return false;
   }
 
-  get ingyenes(): boolean {
+  get ezIngyenesUtazás(): boolean {
     return false;
   }
 
