@@ -1,3 +1,5 @@
+import dayjs from "dayjs";
+import customParseFormat from "dayjs/plugin/customParseFormat";
 import type { Metadata } from "next";
 import { Toaster } from "react-hot-toast";
 import "./globals.css";
@@ -12,6 +14,7 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  dayjs.extend(customParseFormat);
   return (
     <html className={"h-full antialiased"} lang="en">
       <body className="flex min-h-full flex-col">
