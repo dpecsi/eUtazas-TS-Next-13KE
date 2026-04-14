@@ -22,6 +22,14 @@ export default abstract class Felszállás {
     return false;
   }
 
+  get adatsor(): string {
+    return `${this._kártyaAzon}`;
+  }
+
+  get ezLejár3Nap(): boolean {
+    return false;
+  }
+
   constructor(adatsor: string) {
     const [m, idő, k] = adatsor.split(" ");
     this._megállóSorszáma = Number(m);
@@ -34,5 +42,9 @@ export default abstract class Felszállás {
     // );
     this._idő = dayjs(idő, "YYYYMMDD-HHmm").toDate();
     this._kártyaAzon = k;
+  }
+
+  static napokszama(első: Date, második: Date): number {
+    return Math.round((első.getTime() - második.getTime()) / (1000 * 60 * 60 * 24));
   }
 }

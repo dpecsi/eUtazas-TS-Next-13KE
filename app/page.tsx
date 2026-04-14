@@ -2,6 +2,7 @@ import Megoldás from "@/app/Megoldás";
 
 export default function eUtazásPage() {
   const m: Megoldás = new Megoldás("utasadat.txt");
+  m.figyelmeztetés("figyelmeztetes.txt");
   return (
     <div className="font-mono">
       <p>2. feladat</p>

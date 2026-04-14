@@ -47,6 +47,16 @@ export default class Megoldás {
     return db;
   }
 
+  figyelmeztetés(forrás: string) {
+    let adat: string = "";
+    for (const utas of this.#utasadatok) {
+      if (utas.ezLejár3Nap) {
+        adat += `${utas.adatsor}\n`;
+      }
+    }
+    fs.writeFileSync(forrás, adat, "utf-8");
+  }
+
   constructor(forrás: string) {
     const adatsorok: string[] = fs.readFileSync(forrás, "utf-8").split("\n");
     for (const line of adatsorok) {

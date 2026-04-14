@@ -17,10 +17,19 @@ export default class FelszállásBérlet extends Felszállás {
     return ["NYP", "RVS", "GYK"].includes(this.#típus) && !this.ezÉrvénytelenFelszállás;
   }
 
+  get ezLejár3Nap(): boolean {
+    const napok: number = Felszállás.napokszama(this.#érvényes, this._idő);
+    return napok <= 3 && napok >= 0;
+  }
+
+  get adatsor(): string {
+    return `${this._kártyaAzon} ${dayjs(this.#érvényes).format("YYYY-MM-DD")}`;
+  }
+
   constructor(adatsor: string) {
     super(adatsor); // az ősosztály (Felszállás) konsktruktorának hívása (kötelező)
     const adat = adatsor.split(" ");
     this.#típus = adat[3];
-    this.#érvényes = dayjs(adat[4], "YYYYMMDD").add(1, "day").toDate();
+    this.#érvényes = dayjs(adat[4], "YYYYMMDD").toDate();
   }
 }
